@@ -51,19 +51,42 @@ function snake_case(str) {
 
 function leet(str) {
   if (typeof str !== "string" || str.length === 0) return "";
-  str = str.replace('a','4');
-  str = str.replace('A','4');
-  str = str.replace('e','3');
-  str = str.replace('E','3');
-  str = str.replace('i','1');
-  str = str.replace('I','1');
-  str = str.replace('o','0');
-  str = str.replace('O','0');
-  str = str.replace('u','_');
-  str = str.replace('U','_');
-  str = str.replace('y','7');
-  str = str.replace('Y','7');
+  str = str.replace(/a/gi,'4');
+  str = str.replace(/e/gi,'3');
+  str = str.replace(/i/gi,'1');
+  str = str.replace(/o/gi,'0');
+  str = str.replace(/u/gi,'(_)');
+  str = str.replace(/y/gi,'7');
   return str;
 }
 
-console.log(leet("TogglECase isu_theU Helylo WorYld"));
+//console.log(leet("TogglECase isu_theU coolest HelylO WOrYld"));
+
+function verlan(str) {
+  if(typeof str !== "string" || str.length === 0) return "";
+  let array_1 = str.split(' ');
+  let array_2 = [];
+  for(let i=0;i<array_1.length;i++) {
+    array_1[i] = array_1[i].split('');
+    let new_array = [];
+    for(let j=0;j<array_1[i].length;j++) {
+        new_array.unshift(array_1[i][j]);
+    }
+    array_1[i] = new_array.join("");
+  }
+  return array_1.join(" ");
+}
+
+console.log(verlan("TogglECase isu_theU coolest HelylO WOrYld"));
+
+function yoda(str) {
+  if(typeof str !== "string" || str.length === 0) return "";
+  let array_1 = str.split(' ');
+  let array_2 = [];
+  for(let i=0;i<array_1.length;i++) {
+      array_2.unshift(array_1[i]);
+  }
+  return array_2.join(" ");
+}
+
+//console.log(yoda("TogglECase isu_theU coolest HelylO WOrYld"));
