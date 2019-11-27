@@ -30,24 +30,27 @@ function capitalize(str) {
   .join(" ");
 }
 
-console.log(capitalize('rest  rezf'));
+//console.log(capitalize('rest  rezf'));
 
 function camelCase(str) {
     if (typeof str !== "string" || str.length === 0) return "";
-    let re = "/\s*(;|$)\s*\s*_/";
-    const array = str.split(re);
-    return array;
+    str = str.replace(/_/gi,'');
+    const array = str.toLowerCase().split(' ');
+    for(let i=0;i < array.length; i++) {
+      array[i] = ucfirst(array[i]);
+    }
+    return array.join('');
 }
 
-//console.log(camelCase("ToggleCase is_the coolesthello world"));
+//console.log(camelCase("ToggleCase Is_the coolest hello world"));
 
 function snake_case(str) {
     if (typeof str !== "string" || str.length === 0) return "";
     const array = str.toLowerCase().split(" ");
-    return array.join("");
+    return array.join("_");
 }
 
-//console.log(snake_case("ToggleCase is_the coolest Hello World"));
+console.log(snake_case("ToggleCase is_the coolest Hello World"));
 
 function leet(str) {
   if (typeof str !== "string" || str.length === 0) return "";
@@ -77,7 +80,7 @@ function verlan(str) {
   return array_1.join(" ");
 }
 
-console.log(verlan("TogglECase isu_theU coolest HelylO WOrYld"));
+//console.log(verlan("TogglECase isu_theU coolest HelylO WOrYld"));
 
 function yoda(str) {
   if(typeof str !== "string" || str.length === 0) return "";
