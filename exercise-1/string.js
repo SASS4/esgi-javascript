@@ -79,11 +79,11 @@ function vig(str, code) {
     const carCode = car.charCodeAt(0) - "a".charCodeAt(0);
 
     if(carCode < 0 || carCode > 25) return car;
-    const codeCode = code[index].charCodeAt(0) - "a".charCodeAt(0);
+    const codeCode = code.charCodeAt(0) - "a".charCodeAt(0);
     
     const encodedCode = (carCode + codeCode)%26;
     return String.fromCharCode(encodedCode + 'a'.charCodeAt(0));
-  }).join(' ');
+  }).join('');
 }
 
 console.log(vig("anticonstitutionnellement","foo"));
