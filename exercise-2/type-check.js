@@ -9,17 +9,21 @@ function type_check_v1(arg1, arg2) {
 //console.log(type_check_v1(1,"number"));
 
 function type_check_v2(arg1, arg2) {
-    if(typeof arg1 === "number") {
-        for(let i = 0; i < arg2.enum.length; i++){
-            if(arg2.enum[i] === arg1){
-                return true;
-            }
+    if (arg2.enum) {
+        for (let i = 0 ; i< arg2.enum.length; i++) {
+            if(arg2.enum[i] === arg1) return true;
         }
-        return false;
     }
-    else if(typeof arg1 === "string" && arg1 === arg2.value) return true;
-    else if(typeof arg1 === "string" && arg1 !== arg2.value) return false;
+    if (arg2.type) {
+        if (arg2.value){
+            return arg1 === arg2.value;
+        }
+        return typeof arg1 === arg2.type;
+    }
     return typeof arg1 === arg2.type;
 }
 
-//console.log(type_check_v2(2,{enum:[]}));
+console.log(type_check_v2({prop1: 1}, {type: "object"}));
+console.log(type_check_v2("foo", {type: "string", value: "foo"}));
+console.log(type_check_v2("bar", {type: "string", value: "foo"}));
+console.log(type_check_v2(3, {enum: ["foo", "bar", 3]}));
