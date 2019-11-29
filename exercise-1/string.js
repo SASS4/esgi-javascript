@@ -30,11 +30,9 @@ function capitalize(str) {
   .join(" ");
 }
 
-//console.log(capitalize('rest  rezf'));
-
 function camelCase(str) {
     if (typeof str !== "string" || str.length === 0) return "";
-    str = str.replace(/_/gi,'');
+    str = str.replace(/_/gi,' ');
     const array = str.toLowerCase().split(' ');
     for(let i=0;i < array.length; i++) {
       array[i] = ucfirst(array[i]);
@@ -42,15 +40,11 @@ function camelCase(str) {
     return array.join('');
 }
 
-//console.log(camelCase("ToggleCase Is_the coolest hello world"));
-
 function snake_case(str) {
     if (typeof str !== "string" || str.length === 0) return "";
     const array = str.toLowerCase().split(" ");
     return array.join("_");
 }
-
-console.log(snake_case("ToggleCase is_the coolest Hello World"));
 
 function leet(str) {
   if (typeof str !== "string" || str.length === 0) return "";
@@ -63,33 +57,33 @@ function leet(str) {
   return str;
 }
 
-//console.log(leet("TogglECase isu_theU coolest HelylO WOrYld"));
-
 function verlan(str) {
   if(typeof str !== "string" || str.length === 0) return "";
-  let array_1 = str.split(' ');
-  let array_2 = [];
-  for(let i=0;i<array_1.length;i++) {
-    array_1[i] = array_1[i].split('');
-    let new_array = [];
-    for(let j=0;j<array_1[i].length;j++) {
-        new_array.unshift(array_1[i][j]);
-    }
-    array_1[i] = new_array.join("");
-  }
-  return array_1.join(" ");
+  return str.split(" ").map(function(word) {
+    return word.split("").reverse().join('');
+  }).join(" ");
 }
-
-//console.log(verlan("TogglECase isu_theU coolest HelylO WOrYld"));
 
 function yoda(str) {
   if(typeof str !== "string" || str.length === 0) return "";
-  let array_1 = str.split(' ');
-  let array_2 = [];
-  for(let i=0;i<array_1.length;i++) {
-      array_2.unshift(array_1[i]);
-  }
-  return array_2.join(" ");
+  return str.split(' ').reverse().join(' ');
 }
 
-//console.log(yoda("TogglECase isu_theU coolest HelylO WOrYld"));
+function vig(str, code) {
+  if(typeof str !== "string" || !str) return "";
+  while(code.lenght < str.length) {
+    code += code;
+  }
+  return str.split("").map(function(car,index) {
+    car = car.toLowerCase();
+    const carCode = car.charCodeAt(0) - "a".charCodeAt(0);
+
+    if(carCode < 0 || carCode > 25) return car;
+    const codeCode = code[index].charCodeAt(0) - "a".charCodeAt(0);
+    
+    const encodedCode = (carCode + codeCode)%26;
+    return String.fromCharCode(encodedCode + 'a'.charCodeAt(0));
+  }).join(' ');
+}
+
+console.log(vig("anticonstitutionnellement","foo"));
