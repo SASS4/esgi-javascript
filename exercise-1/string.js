@@ -82,7 +82,7 @@ function vig(str, code) {
     const codeCode = code.charCodeAt(0) - "a".charCodeAt(0);
     
     const encodedCode = (carCode + codeCode)%26;
-    return String.fromCharCode(encodedCode + 'a'.charCodeAt(0));
+    return String.fromCharCode(encodedCode + "a".charCodeAt(0));
   }).join('');
 }
 
